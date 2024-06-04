@@ -1,10 +1,8 @@
 package com.example.redis;
 
+import com.example.redis.dto.PersonDto;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.redis.core.ListOperations;
-import org.springframework.data.redis.core.SetOperations;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.data.redis.core.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -59,5 +57,35 @@ public class SimpleController {
     }
     return value;
   }
+
+  private final RedisTemplate<String, PersonDto> personRedisTemplate;
+
+  @PutMapping("person")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void setPerson(
+          @RequestParam("name")
+          String name,
+          @RequestBody
+          PersonDto dto
+  ){
+      ValueOperations<String, PersonDto> operations
+              = personRedisTemplate.opsForValue();
+      operations.set(name, dto);
+  }
+
+  @GetMapping("person")
+  public PersonDto getPerson(
+          @RequestParam("name")
+          String name
+  ){
+      ValueOperations<String, PersonDto> operations
+              = personRedisTemplate.opsForValue();
+      PersonDto value = operations.get(name);
+      if (value == null)
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+      return value;
+  }
+
+
 
 }
