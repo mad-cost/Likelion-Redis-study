@@ -1,4 +1,4 @@
-package com.example.redis;
+package com.example.redis.controller;
 
 import com.example.redis.dto.PersonDto;
 import lombok.RequiredArgsConstructor;
