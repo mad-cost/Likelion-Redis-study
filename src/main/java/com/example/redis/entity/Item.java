@@ -3,6 +3,9 @@ package com.example.redis.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Entity
 @Builder
@@ -20,5 +23,8 @@ public class Item {
     private Integer price;
     @Setter
     private Integer stock;
+
+    @OneToMany(mappedBy = "item")
+    private final List<ItemOrder> orders = new ArrayList<>();
 
 }

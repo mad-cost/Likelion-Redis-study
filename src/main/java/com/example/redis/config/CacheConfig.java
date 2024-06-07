@@ -18,11 +18,9 @@ import static org.springframework.data.redis.serializer.RedisSerializationContex
 
 @Configuration
 @EnableCaching
-// Redis 캐시를 설정
 public class CacheConfig {
   @Bean
   public RedisCacheManager cacheManager(
-          //RedisConnectionFactory: Redis와의 연결을 관리
           RedisConnectionFactory redisConnectionFactory
   ) {
     RedisCacheConfiguration configuration = RedisCacheConfiguration

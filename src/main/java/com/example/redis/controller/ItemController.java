@@ -3,6 +3,7 @@ package com.example.redis.controller;
 import com.example.redis.dto.ItemDto;
 import com.example.redis.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class ItemController {
   }
 
   @GetMapping
-  public List<ItemDto> readAll(){
+  public List<ItemDto> readAll() {
     return itemService.readAll();
   }
 
@@ -30,10 +31,21 @@ public class ItemController {
   public ItemDto readOne(
           @PathVariable("id")
           Long id
-  ){
+  ) {
     return itemService.readOne(id);
   }
 
+  @PostMapping("{id}/purchase")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void purchase(
+          @PathVariable("id")
+          Long id
+  ) {
+    itemService.purchase(id);
+  }
 
-
+  @GetMapping("sold-rank")
+  public List<ItemDto> ranks() {
+    return itemService.getMostSold();
+  }
 }
