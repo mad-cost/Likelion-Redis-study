@@ -7,6 +7,7 @@ import com.example.redis.repo.ItemRepository;
 import jakarta.annotation.Resource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.http.HttpStatus;
@@ -53,7 +54,21 @@ public class ItemService {
 //                        new ResponseStatusException(HttpStatus.NOT_FOUND));
   }
 
+  // cacheName: 캐시 규칙을 지정하기 위한 이름
+  // key: 캐시를 저장할때 개별 데이터를 구분하기 위한 값
+  @CachePut(cacheNames = "itemCache", key = "#result.id")
   public ItemDto create(ItemDto dto) {
+    // CachePut은 항상 메서드를 실행하고 해당 결과를 캐시에 적용한다.
+    log.info("cacheput create");
+    return ItemDto.fromEntity(itemRepository.save(Item.builder()
+            .name(dto.getName())
+            .description(dto.getDescription())
+            .price(dto.getPrice())
+            .stock(dto.getStock())
+            .build()));
+  }
+
+  public ItemDto createManual(ItemDto dto) {
     Item item = itemRepository.save(Item.builder()
             .name(dto.getName())
             .description(dto.getDescription())
