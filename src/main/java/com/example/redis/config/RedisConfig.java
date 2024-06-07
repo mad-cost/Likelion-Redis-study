@@ -1,5 +1,6 @@
 package com.example.redis.config;
 
+import com.example.redis.dto.ItemDto;
 import com.example.redis.dto.PersonDto;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,5 +22,15 @@ public class RedisConfig {
       // 주어진 데이터의 직렬화 방식을 결정
       template.setDefaultSerializer(RedisSerializer.json());
       return template;
+  }
+
+  @Bean
+  public RedisTemplate<Long, ItemDto> cacheRedisTemplate(
+          RedisConnectionFactory connectionFactory
+  ) {
+    RedisTemplate<Long, ItemDto> template = new RedisTemplate<>();
+    template.setConnectionFactory(connectionFactory);
+    template.setDefaultSerializer(RedisSerializer.json());
+    return template;
   }
 }
