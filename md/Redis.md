@@ -40,17 +40,17 @@
    - ####  Redis 사용 전
      - 8080포트에 Key - Value값 넣어주기
      ![이미지](/img/num8.png)
-     - 8080포트의 Status:`200 OK`
+     - 8080포트에서 key값 요청 시 / Status:`200 OK`
      ![이미지](/img/num9.png)
-     - 8081포트의 Status: `404 Not Found`
+     - 8081포트에서 key값 요청 시 / Status: `404 Not Found`
      ![이미지](/img/num10.png)
    - #### 이러한 문제가 일어나는 이유
-     - Spring Boot에서 세션을 만들 경우에는 내장되어 있는 Tomcat에서 `JSESSIONID`를 사용하는데
-       8080, 8081의 서로 다른 톰캣이 실행되었고, 이 둘은 서로 세션을 공유하지 않는다
+     - Spring Boot에서 세션을 만들 경우에는 내장되어 있는 Tomcat에서 `JSESSIONID`를 사용하는데,
+       8080과 8081의 서로 다른 톰캣이 실행되었고, 이 둘은 서로 세션을 공유하지 않는다
    - #### Redis를 사용하여 문제 해결하기
      - 8080포트에 Key - Value값 넣어주기
      ![이미지](/img/num11.png)
-     - 8081포트의 Status:`200 OK`
+     - 8081포트에서 key값 요청 시 / Status:`200 OK`
      ![이미지](/img/num12.png)
    - #### 정리
      - 8080포트에서 입력한 값이 8080, 8081포트 모두에서 똑같은 응답을 받을 수 있는 이유는, 
