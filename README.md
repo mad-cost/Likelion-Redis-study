@@ -41,7 +41,7 @@ DB는 데이터를 디스크에 직접 저장하기 때문에 서버에 문제�
 <hr>
 
 ## Redis 조금만 맛보기 👀
-
+[여기를 눌러 주세요](https://github.com/mad-cost/Redis-prac/blob/master/md/Redis.md "Click")
 
 
 
