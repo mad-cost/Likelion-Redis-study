@@ -11,8 +11,8 @@
 - 생성한 Database의 Security에서 application.yaml에서 사용할 username과 password를 알 수 있다
 ![이미지](/img/num3.png)
 3. application.yaml 설정하기
-    - `Redis Cloud에서 만들어진 Redis 서버 접속 정보`를 사용
-    - Redis의 서버 정보를 바탕으로 `.application.yaml`작성하기
+    - Redis Cloud에서 만들어진 `Redis 서버 접속 정보`를 사용
+    - Redis의 서버 접속 정보를 바탕으로 `.application.yaml`작성하기
 ![이미지](/img/num4.png)
 4.  Intellij에 Redis 연결
 ![이미지](/img/num5.png)
