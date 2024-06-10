@@ -33,7 +33,7 @@
 
 #### Redis 맛보기
 1. #### Redis로 간단한 데이터 저장
-   - Redis는 Key - Value의 형태로 데이터를 저장한다
+   - Redis는 Key - Value의 형태로 데이터를 저장한다 <br>
    ![이미지](/img/num7.png)
    
 2. #### 서로 다른 두 개의 서버를 사용하여 비교해 보기
